@@ -27,6 +27,13 @@
 *.lib
 
 # Executables
+aoc[0-2][0-9]-[12]
 *.exe
 *.out
 *.app
+
+# .depend files
+.depend
+
+# Input files
+*.in
