@@ -22,19 +22,19 @@ int main() {
         scans.push_back(std::stoi(s));
     }
     // Accumulate scans
-    std::vector<int> accumulated_scans;
-    auto range_start = scans.begin();
-    auto range_end = range_start;
-    std::advance(range_start, 3);
+    std::vector<int> tripple_scans;
+    auto scans_begin = scans.begin();
+    auto scans_end = scans.begin();
+    std::advance(scans_end, 3);
     for (auto i{0}; i < scans.size() - 3; i++) {
-        accumulated_scans.push_back(std::accumulate(range_start, range_end, 0));
-        std::advance(range_start, 1);
-        std::advance(range_end, 1);
+        tripple_scans.push_back(std::accumulate(scans_begin, scans_end, 0));
+        std::advance(scans_begin, 1);
+        std::advance(scans_end, 1);
     }
-    // Count increments in accumulated_scans
+    // Count increments in tripple_scans
     auto keep{std::numeric_limits<int>::max()};
-    auto increasing_scans = std::accumulate(accumulated_scans.begin(), accumulated_scans.end(),
-                                            0, [&](int a, int b) -> int {
+    auto increasing_scans = std::accumulate(tripple_scans.begin(), tripple_scans.end(), 0,
+                                            [&](int a, int b) -> int {
                                                 if (b > keep)
                                                     a++;
                                                 keep = b;
