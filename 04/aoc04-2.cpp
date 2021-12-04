@@ -49,8 +49,8 @@ std::optional<ResultTuple> check_for_bingo(std::vector<Board>& boards, std::vect
                     count++;
             }
             if (count == board_size) {
-                std::cout << "Bingo on board " << std::distance(boards.data(), &board)
-                          << " in row " << i << '\n';
+                // std::cout << "Bingo on board " << std::distance(boards.data(), &board)
+                //           << " in row " << i << '\n';
                 if (!got_bingo) {
                     bingo = std::make_tuple(std::distance(boards.data(), &board), i, -1);
                     got_bingo = true;
@@ -65,8 +65,8 @@ std::optional<ResultTuple> check_for_bingo(std::vector<Board>& boards, std::vect
                     count++;
             }
             if (count == board_size) {
-                std::cout << "Bingo on board " << std::distance(boards.data(), &board)
-                          << " in col " << i << '\n';
+                // std::cout << "Bingo on board " << std::distance(boards.data(), &board)
+                //           << " in col " << i << '\n';
                 if (!got_bingo) {
                     bingo = std::make_tuple(std::distance(boards.data(), &board), -1, i);
                     got_bingo = true;
@@ -81,7 +81,7 @@ std::optional<ResultTuple> check_for_bingo(std::vector<Board>& boards, std::vect
 }
 
 int get_final_result(int n, int board_idx, std::vector<Board>& boards, const int board_size) {
-    std::cout << "Count unmarked numbers: " << boards[board_idx] << '\n';
+    // std::cout << "Count unmarked numbers: " << boards[board_idx] << '\n';
     auto& board = boards[board_idx];
     auto sum = std::accumulate(board.begin(), board.end(), 0, [](int a, auto b) -> int {
         return a + (std::get<1>(b) ? 0 : std::get<0>(b));
@@ -119,7 +119,8 @@ int main() {
         std::cin >> s;
     } while (!std::cin.eof());
 
-    std::cout << "Read " << numbers.size() << " numbers and " << boards.size() << " boards.\n";
+    // std::cout << "Read " << numbers.size() << " numbers and " << boards.size() << "
+    // boards.\n";
 
     // Play bingo
     won.resize(boards.size());
@@ -139,11 +140,11 @@ int main() {
         }
 
         // Check for bingo
-        std::cout << "Check for bingo for " << n << "!\n";
+        // std::cout << "Check for bingo for " << n << "!\n";
         auto bingo = check_for_bingo(boards, won, board_size);
         if (bingo.has_value()) {
-            std::cout << "Bingo with " << n << " on board " << std::get<0>(*bingo) << std::endl;
-            // won[std::get<0>(*bingo)] = 1;
+            // std::cout << "Bingo with " << n << " on board " << std::get<0>(*bingo) <<
+            // std::endl; won[std::get<0>(*bingo)] = 1;
             if (std::accumulate(won.begin(), won.end(), 0) == won.size()) {
                 std::cout << "Last Bingo: "
                           << get_final_result(n, std::get<0>(*bingo), boards, board_size)

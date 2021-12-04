@@ -40,7 +40,6 @@ static std::ostream& operator<<(std::ostream& os, const std::vector<int>& v) {
 
 std::optional<std::tuple<int, int, int>>
 check_for_bingo(std::vector<std::vector<std::tuple<int, bool>>>& boards, const int board_size) {
-    bool bingo = false;
     for (auto& board : boards) {
         for (auto i{0}; i < board_size; i++) {
             // Check row
@@ -50,7 +49,6 @@ check_for_bingo(std::vector<std::vector<std::tuple<int, bool>>>& boards, const i
                     count++;
             }
             if (count == board_size) {
-                bingo = true;
                 // std::cout << "Bingo on board " << std::distance(boards.data(), &board)
                 //           << " in row " << i << '\n';
                 return std::make_tuple(std::distance(boards.data(), &board), i, -1);
@@ -63,7 +61,6 @@ check_for_bingo(std::vector<std::vector<std::tuple<int, bool>>>& boards, const i
                     count++;
             }
             if (count == board_size) {
-                bingo = true;
                 // std::cout << "Bingo on board " << std::distance(boards.data(), &board)
                 //           << " in col " << i << '\n';
                 return std::make_tuple(std::distance(boards.data(), &board), -1, i);
@@ -76,7 +73,7 @@ check_for_bingo(std::vector<std::vector<std::tuple<int, bool>>>& boards, const i
 int get_final_result(int n, int board_idx,
                      std::vector<std::vector<std::tuple<int, bool>>>& boards,
                      const int board_size) {
-    std::cout << "Count unmarked numbers: " << boards[board_idx] << '\n';
+    // std::cout << "Count unmarked numbers: " << boards[board_idx] << '\n';
     auto& board = boards[board_idx];
     auto sum = std::accumulate(board.begin(), board.end(), 0, [](int a, auto b) -> int {
         return a + (std::get<1>(b) ? 0 : std::get<0>(b));
@@ -129,7 +126,7 @@ int main() {
         }
 
         // Check for bingo
-        std::cout << "Check for bingo for " << n << "!\n";
+        // std::cout << "Check for bingo for " << n << "!\n";
         auto bingo = check_for_bingo(boards, board_size);
         if (bingo.has_value()) {
             std::cout << "Bingo: "
