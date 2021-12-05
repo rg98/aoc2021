@@ -1,7 +1,7 @@
 #
-# Makefile for aoc2031
+# Makefile for aoc2021
 #
-# © Ralph Ganszky 12/2031
+# © Ralph Ganszky 12/2021
 #
 
 CXX           = clang++
