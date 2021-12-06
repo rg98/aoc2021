@@ -1,7 +1,7 @@
 //
-// aoc04-1.cpp
+// aoc06-1.cpp
 //
-// Advent of Code 2021 Day 04
+// Advent of Code 2021 Day 06
 //
 // © Ralph Ganszky
 //

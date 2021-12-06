@@ -1,7 +1,7 @@
 //
-// aoc04-1.cpp
+// aoc06-1.cpp
 //
-// Advent of Code 2021 Day 04
+// Advent of Code 2021 Day 06
 //
 // © Ralph Ganszky
 //
@@ -27,7 +27,6 @@ std::vector<int64_t> calc_one_fish(int days, int n) {
     std::vector<int64_t> n_fishes(1, 1);
     std::vector<int8_t> fishes(1, 0);
     for (auto day{1}; day <= days; day++) {
-        std::cout << "day: " << day << '\n';
         auto new_fishes{0};
         for (auto& fish : fishes) {
             if (--fish < 0) {
