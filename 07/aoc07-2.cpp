@@ -1,5 +1,5 @@
 //
-// aoc07-1.cpp
+// aoc07-2.cpp
 //
 // Advent of Code 2021 Day 07
 //
