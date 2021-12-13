@@ -12,12 +12,6 @@
 #include <utility>
 #include <vector>
 
-static std::ostream& operator<<(std::ostream& os, const std::vector<std::pair<int, int>>& v) {
-    std::for_each(v.begin(), v.end(),
-                  [&](auto e) { os << e.first << ", " << e.second << '\n'; });
-    return os;
-}
-
 void fold(const int x, const int y, std::vector<std::pair<int, int>>& dots) {
     if (x && !y) {
         std::for_each(dots.begin(), dots.end(),
@@ -48,8 +42,6 @@ int main() {
                 folds.emplace_back(std::make_pair(0, n));
             else
                 folds.emplace_back(std::make_pair(n, 0));
-            auto x = folds.back().first;
-            auto y = folds.back().second;
         } else {
             auto x = std::stoi(s, &pos);
             s.erase(0, pos + 1);
