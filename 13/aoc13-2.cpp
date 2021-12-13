@@ -12,12 +12,6 @@
 #include <utility>
 #include <vector>
 
-static std::ostream& operator<<(std::ostream& os, const std::vector<std::pair<int, int>>& v) {
-    std::for_each(v.begin(), v.end(),
-                  [&](auto e) { os << e.first << ", " << e.second << '\n'; });
-    return os;
-}
-
 void fold(const int x, const int y, std::vector<std::pair<int, int>>& dots) {
     if (x && !y) {
         std::for_each(dots.begin(), dots.end(),
@@ -48,15 +42,11 @@ int main() {
                 folds.emplace_back(std::make_pair(0, n));
             else
                 folds.emplace_back(std::make_pair(n, 0));
-            auto x = folds.back().first;
-            auto y = folds.back().second;
-            std::cout << "fold: " << x << ", " << y << '\n';
         } else {
             auto x = std::stoi(s, &pos);
             s.erase(0, pos + 1);
             auto y = std::stoi(s, &pos);
             dots.emplace_back(std::make_pair(x, y));
-            std::cout << x << ", " << y << '\n';
         }
         std::cin >> s;
     } while (!std::cin.eof());
@@ -65,24 +55,19 @@ int main() {
     std::for_each(folds.begin(), folds.end(), [&](auto f) { fold(f.first, f.second, dots); });
 
     // Count dots
-    std::cout << '\n';
     std::cout << "Dots on sheet: " << dots.size() << '\n';
     std::sort(dots.begin(), dots.end());
     auto end = std::unique(dots.begin(), dots.end());
     dots.erase(end, dots.end());
-
-    // Display transparent
-    std::sort(dots.begin(), dots.end(), [](auto a, auto b) {
-        return (a.second < b.second || (a.second == b.second && a.first < b.first));
-    });
-
-    std::cout << dots << '\n';
     std::cout << "Dots remaining: " << dots.size() << '\n';
 
-    auto max_x = dots.back().first;
-    auto max_y = dots.back().second;
-    for (auto y{0}; y <= max_y; y++) {
-        for (auto x{0}; x <= max_x; x++) {
+    // Display transparent
+    auto max_x = std::max_element(dots.begin(), dots.end(),
+                                  [](auto a, auto b) -> bool { return a.first < b.first; });
+    auto max_y = std::max_element(dots.begin(), dots.end(),
+                                  [](auto a, auto b) -> bool { return a.second < b.second; });
+    for (auto y{0}; y <= max_y->second; y++) {
+        for (auto x{0}; x <= max_x->first; x++) {
             if (std::find(dots.begin(), dots.end(), std::make_pair(x, y)) == dots.end())
                 std::cout << '.';
             else

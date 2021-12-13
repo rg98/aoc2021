@@ -50,13 +50,11 @@ int main() {
                 folds.emplace_back(std::make_pair(n, 0));
             auto x = folds.back().first;
             auto y = folds.back().second;
-            std::cout << "fold: " << x << ", " << y << '\n';
         } else {
             auto x = std::stoi(s, &pos);
             s.erase(0, pos + 1);
             auto y = std::stoi(s, &pos);
             dots.emplace_back(std::make_pair(x, y));
-            std::cout << x << ", " << y << '\n';
         }
         std::cin >> s;
     } while (!std::cin.eof());
@@ -67,12 +65,9 @@ int main() {
     fold(x, y, dots);
 
     // Count dots
-    std::cout << '\n';
-    std::cout << "Dots on sheet: " << dots.size() << '\n';
     std::sort(dots.begin(), dots.end());
     auto end = std::unique(dots.begin(), dots.end());
     dots.erase(end, dots.end());
-    std::cout << dots << '\n';
     std::cout << "Dots remaining: " << dots.size() << '\n';
 
     return 0;
