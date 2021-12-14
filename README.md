@@ -8,4 +8,4 @@ Advent of Code 2021
 * Day 08 - Set operations
 * Day 09 - Boundary Fill
 * Day 10 - First: Recursive descendent. Second: More elegant
-
+* Day 14 - Dynamic programming for part two
